@@ -1,0 +1,24 @@
+---
+import DisplayLayout from "../../layouts/DisplayLayout.astro"
+import PhotoCard from "../../components/PhotoCard.astro"
+const imageDataFiles = Object.values(import.meta.glob('../../assets/image_data/*.md', { eager: true }));
+const images = Object.values(import.meta.glob('../../assets/images/*.png', { eager: true }));
+---
+
+<style>
+    .gallery {
+        display: flex;
+        justify-content: center;    /* horizontal centering */
+        flex-wrap: wrap;            /* allows new rows */
+        gap: 1rem;                  /* spacing between images */
+    }
+</style>
+
+<DisplayLayout pageTitle='Art'>
+    <div class="gallery">
+        {imageDataFiles.map((file: any) => {
+            const imagePath = `/src/assets/images/${file.frontmatter.title}.png`;
+            return (<PhotoCard path={imagePath} title={file.frontmatter.title} date={file.frontmatter.date}/>);
+        })}
+    </div>
+</DisplayLayout>
