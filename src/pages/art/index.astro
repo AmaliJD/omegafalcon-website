@@ -3,7 +3,8 @@ import * as utils from "../../scripts/utils";
 import DisplayLayout from "../../layouts/DisplayLayout.astro"
 import PhotoCard from "../../components/PhotoCard.astro"
 const imageDataFiles = Object.values(import.meta.glob('../../assets/image_data/*.md', { eager: true })).sort((a: any, b: any) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
-const images = Object.values(import.meta.glob('../../assets/images/*.png', { eager: true }));
+const artworkMDList = Object.values(import.meta.glob('../../assets/artwork/**/*.md', { eager: true })).sort((a: any, b: any) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+const artworkDataList = utils.generateArtworkData(artworkMDList);
 
 Object.entries(imageDataFiles).map(([path, module]: any) => {
   const title = path.split('/').pop().replace('.md', '');
@@ -26,10 +27,15 @@ Object.entries(imageDataFiles).map(([path, module]: any) => {
 
 <DisplayLayout pageTitle='Art'>
     <div class="gallery">
-        {imageDataFiles.map((file: any) => {
+        <!-- {imageDataFiles.map((file: any) => {
             const title = file.file.split('/').pop().replace('.md', '');
             const imagePath = utils.getImagePath(`${title}`);
+            // console.log(imagePath)
             return (<PhotoCard path={imagePath} title={title} date={file.frontmatter.date}/>);
+        })} -->
+        <!-- {console.log(artworkMDList[0].date)} -->
+        {artworkDataList.map((data: any) => {
+            return (<PhotoCard path={data.mainImagePaths[0]} title={data.title} date={data.date}/>);
         })}
     </div>
 </DisplayLayout>
