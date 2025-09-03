@@ -17,8 +17,9 @@ const images = Object.values(import.meta.glob('../../assets/images/*.png', { eag
 <DisplayLayout pageTitle='Art'>
     <div class="gallery">
         {imageDataFiles.map((file: any) => {
-            const imagePath = `/src/assets/images/${file.frontmatter.title}.png`;
-            return (<PhotoCard path={imagePath} title={file.frontmatter.title} date={file.frontmatter.date}/>);
+            const title = file.file.split('/').pop().replace('.md', '');
+            const imagePath = `/src/assets/images/${title}.png`;
+            return (<PhotoCard path={imagePath} title={title} date={file.frontmatter.date}/>);
         })}
     </div>
 </DisplayLayout>

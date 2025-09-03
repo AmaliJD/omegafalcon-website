@@ -1,5 +1,4 @@
 ---
-title: "I'm Beautiful"
 date: 2024-09-08
 tags: ["omegafalcon, geometry dash"]
 ---
