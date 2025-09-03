@@ -1,8 +1,18 @@
 ---
+import * as utils from "../../scripts/utils";
 import DisplayLayout from "../../layouts/DisplayLayout.astro"
 import PhotoCard from "../../components/PhotoCard.astro"
 const imageDataFiles = Object.values(import.meta.glob('../../assets/image_data/*.md', { eager: true })).sort((a: any, b: any) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 const images = Object.values(import.meta.glob('../../assets/images/*.png', { eager: true }));
+
+Object.entries(imageDataFiles).map(([path, module]: any) => {
+  const title = path.split('/').pop().replace('.md', '');
+  return {
+    ...module.frontmatter,
+    title,
+    content: module.default
+  };
+});
 ---
 
 <style>
@@ -18,7 +28,7 @@ const images = Object.values(import.meta.glob('../../assets/images/*.png', { eag
     <div class="gallery">
         {imageDataFiles.map((file: any) => {
             const title = file.file.split('/').pop().replace('.md', '');
-            const imagePath = `/src/assets/images/${title}.png`;
+            const imagePath = utils.getImagePath(`${title}`);
             return (<PhotoCard path={imagePath} title={title} date={file.frontmatter.date}/>);
         })}
     </div>

@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 export function formatDate(date: Date): string
 {
     //return date.toString().slice(0, 10);
@@ -10,4 +12,22 @@ export function formatDate(date: Date): string
     const separator = " / ";
 
     return `${year}${separator}${month}${separator}${day}`
+}
+
+export function getImagePath(fileName: string): string
+{
+    const extensions = ['png', 'jpg', 'jpeg', 'webp'];
+    let path = fileName;
+
+    for (const ext of extensions)
+    {
+        const testPath = `./src/assets/images/${fileName}.${ext}`;
+        if (fs.existsSync(`${testPath}`))
+        {
+            path = testPath;
+            break;
+        }
+    }
+
+    return path;
 }
