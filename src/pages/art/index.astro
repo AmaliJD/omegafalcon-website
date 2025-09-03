@@ -1,7 +1,7 @@
 ---
 import DisplayLayout from "../../layouts/DisplayLayout.astro"
 import PhotoCard from "../../components/PhotoCard.astro"
-const imageDataFiles = Object.values(import.meta.glob('../../assets/image_data/*.md', { eager: true }));
+const imageDataFiles = Object.values(import.meta.glob('../../assets/image_data/*.md', { eager: true })).sort((a: any, b: any) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 const images = Object.values(import.meta.glob('../../assets/images/*.png', { eager: true }));
 ---
 

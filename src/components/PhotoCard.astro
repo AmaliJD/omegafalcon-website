@@ -1,4 +1,5 @@
 ---
+import * as utils from "../scripts/utils";
 const { path, title, date } = Astro.props;
 ---
 
@@ -6,7 +7,7 @@ const { path, title, date } = Astro.props;
     <img src={path} alt={title}/>
     <div class="overlay">
         <h3 class="title">{title}</h3>
-        <p class="date">{date.toString().slice(0, 10)}</p>
+        <p class="date">{utils.formatDate(date)}</p>
     </div>
 </div>
 
@@ -47,6 +48,7 @@ const { path, title, date } = Astro.props;
         opacity: 0;
         transition: opacity 0.3s ease;
         text-align: center;
+        line-height: 0;
     }
 
     .overlay:hover {
