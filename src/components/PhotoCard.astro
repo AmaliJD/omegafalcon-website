@@ -3,21 +3,24 @@ import * as utils from "../scripts/utils";
 const { paths, title, date } = Astro.props;
 
 let css = '';
+// css += `.photo-card:hover .carosel-body {left: -100%}`;
 if (paths.length > 1)
 {
     paths.forEach((p: string, index: number) => {
         const pathParts = p.split('\\');
         const title: string = pathParts[pathParts.length - 2];
-        const id = (title + '-' + index).replace(' ', '-');
+        const id = (title + '-' + index).replaceAll(' ', '-');
         // console.log(id);
         css += `
-        #${id}:checked ~ .photo-card.carosel-body {
-            transform: translateX(-${index * 100}%);
+        .photo-card:has(#${id}:checked) .carosel-body {
+            left: -${index * 100}%;
         }
             
         `;
     })
 }
+console.log(css);
+///* transform: translateX(-${index * 100}%); */
 ---
 
 <!-- <div class="photo-card">
@@ -46,9 +49,10 @@ if (paths.length > 1)
         {paths.length > 1 && paths.map((p: string, index: number) => {
             const pathParts = p.split('\\');
             const title: string = pathParts[pathParts.length - 2];
-            const id = (title + '-' + index).replace(' ', '-');
+            const id = (title + '-' + index).replaceAll(' ', '-');
             // console.log(id);
-            return(<input type="radio" name={title} id={id}/>)
+            
+            return(<input type="radio" name={title} id={id} checked={index === 0}/>)
         })}
     </div>
 </div>
@@ -60,9 +64,9 @@ if (paths.length > 1)
         overflow: hidden;
         display: flex;
         
-        min-width: 150px;
+        min-width: 180px;
         max-width: 450px;
-        height: 200px;
+        height: 220px;
 
 
         border-radius: 8px;
@@ -93,7 +97,7 @@ if (paths.length > 1)
         object-fit: cover;
         /* overflow-x: scroll; */
         scroll-snap-type: x mandatory;
-        transition: transform 0.3s ease;
+        transition: left 0.3s ease;
     }
     
     .carosel-body img {
@@ -116,9 +120,9 @@ if (paths.length > 1)
         filter: brightness(60%);
     }
 
-    .photo-card:hover .carousel-body {
-        
-    }
+    /* .photo-card:hover .carosel-body {
+        left: -100%
+    } */
 
     .overlay {
         position: absolute;
@@ -165,7 +169,7 @@ if (paths.length > 1)
         position: absolute;
         opacity: 0;
         
-        top: 80px;
+        top: 195px;
         left: 0;
         width: 100%;
         height: 100%;
@@ -176,14 +180,53 @@ if (paths.length > 1)
         justify-content: center;
 
         transition: opacity 0.3s ease;
-        z-index: 10;
+        /* z-index: 10; */
     }
 
     .photo-card:hover .radio-buttons{
         opacity: 1;
     }
+
+    .radio-buttons input[type="radio"] {
+        appearance: none;
+        width: 40px;
+        height: 8px;
+        opacity: 0.3;
+        border-radius: 10px;
+        background-color: white;
+        accent-color: white;
+        cursor: pointer;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .radio-buttons input[type="radio"]:checked {
+        opacity: 1;
+    }
+
+    /* GENERATED */
+    .photo-card:has(#I-Depend-On-You-0:checked) .carosel-body {
+        left: -0%;
+    }
+
+
+    .photo-card:has(#I-Depend-On-You-1:checked) .carosel-body {
+        left: -100%;
+    }
+
+
+
+    .photo-card:has(#Sliced-Open-0:checked) .carosel-body {
+        left: -0%;
+    }
+
+
+    .photo-card:has(#Sliced-Open-1:checked) .carosel-body {
+        left: -100%;
+    }
 </style>
 
-<style is:raw>
-  {css}
-</style>
+<!-- {@html `<style>${css}</style>`} -->
+
+
+<!-- {css && <style is:raw>{cssL}</style>} -->
