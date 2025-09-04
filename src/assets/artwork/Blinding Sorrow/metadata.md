@@ -1,5 +1,5 @@
 ---
-date: 2025-01-17
+date: 2025.01.17
 tags: ["omegafalcon"]
 tagline: ""
 ---

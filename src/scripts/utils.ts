@@ -1,19 +1,12 @@
 import fs from 'fs';
 import * as fpath from 'path';
+import { format, parseISO } from 'date-fns';
 
 const imageFileExtensions = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
 
-export function formatDate(date: Date): string
+export function formatDate(date: string): string
 {
-    date = new Date(date);
-
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // months are 0-indexed
-    const day = (date.getDate() + 1).toString().padStart(2, "0");
-
-    const separator = " / ";
-
-    return `${year}${separator}${month}${separator}${day}`
+    return date.slice(0, 10).replaceAll('.', ' / ');
 }
 
 export function getImagePath(fileName: string): string
