@@ -34,8 +34,8 @@ Object.entries(imageDataFiles).map(([path, module]: any) => {
             return (<PhotoCard path={imagePath} title={title} date={file.frontmatter.date}/>);
         })} -->
         <!-- {console.log(artworkMDList[0].date)} -->
-        {artworkDataList.map((data: any) => {
-            return (<PhotoCard paths={data.mainImagePaths} title={data.title} date={data.date}/>);
+        {artworkDataList.map((data: any, index) => {
+            return (<PhotoCard paths={data.mainImagePaths} title={data.title} date={data.date} index={index}/>);
         })}
     </div>
 </DisplayLayout>

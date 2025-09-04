@@ -2,7 +2,7 @@
 import * as utils from "../scripts/utils";
 import type { ImageMetadata } from 'astro';
 import { Image, Picture } from 'astro:assets';
-const { paths, title, date } = Astro.props;
+const { paths, title, date, index } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/artwork/**/*.{jpeg,jpg,png,gif,webp,svg}');
 
 function fixImagePath(path: string) {
@@ -26,7 +26,7 @@ if (paths.length > 1)
         `;
     })
 }
-// console.log(css);
+console.log(css);
 ///* transform: translateX(-${index * 100}%); */
 ---
 
@@ -40,12 +40,12 @@ if (paths.length > 1)
 
 <div class="photo-card">
     <!-- <img class="first-image" src={paths[0]} alt={title}/> -->
-    <Image class="first-image" src={images[fixImagePath(paths[0])]()} alt={title} height='500'/>
+    <Image class="first-image" src={images[fixImagePath(paths[0])]()} alt={title} height='600' loading={index < 15 ? "eager" : "lazy"} decoding={index < 15 ? "sync" : "async"}/>
     
     <div class="carosel-body">
         {paths.map((p: string) =>
             // <img src={p} alt={title} />
-            <Image src={images[fixImagePath(p)]()} alt={title} height='500'/>
+            <Image src={images[fixImagePath(p)]()} alt={title} height='600' loading={index < 15 ? "eager" : "lazy"} decoding={index < 15 ? "sync" : "async"}/>
         )}
     </div>
     
@@ -73,10 +73,11 @@ if (paths.length > 1)
         overflow: hidden;
         display: flex;
         
-        min-width: 180px;
+        min-width: 220px;
         max-width: 450px;
         height: 220px;
-
+        /* width: 220px; */
+        /* width: 280px; */
 
         border-radius: 8px;
 
@@ -158,7 +159,7 @@ if (paths.length > 1)
     }
 
     .overlay .title {
-        max-width: 100%;
+        max-width: 95%;
         font-size: 2rem;
         font-weight: bold;
         font-family: sans-serif;
@@ -199,11 +200,12 @@ if (paths.length > 1)
     .radio-buttons input[type="radio"] {
         appearance: none;
         width: 40px;
-        height: 8px;
+        height: 10px;
         opacity: 0.3;
+        border: 1px solid #b9b9b9ff;
         border-radius: 10px;
         background-color: white;
-        accent-color: white;
+        /* accent-color: blue; */
         cursor: pointer;
         margin-left: 5px;
         margin-right: 5px;
@@ -224,7 +226,6 @@ if (paths.length > 1)
     }
 
 
-
     .photo-card:has(#Sliced-Open-0:checked) .carosel-body {
         left: -0%;
     }
@@ -233,9 +234,61 @@ if (paths.length > 1)
     .photo-card:has(#Sliced-Open-1:checked) .carosel-body {
         left: -100%;
     }
+
+    .photo-card:has(#Shading-Tests-0:checked) .carosel-body {
+        left: -0%;
+    }
+
+
+    .photo-card:has(#Shading-Tests-1:checked) .carosel-body {
+        left: -100%;
+    }
+
+    .photo-card:has(#GDLF-Stickers-0:checked) .carosel-body {
+        left: -0%;
+    }
+
+
+    .photo-card:has(#GDLF-Stickers-1:checked) .carosel-body {
+        left: -100%;
+    }
+
+
+    .photo-card:has(#GDLF-Stickers-2:checked) .carosel-body {
+        left: -200%;
+    }
+
+
+    .photo-card:has(#GDLF-Stickers-3:checked) .carosel-body {
+        left: -300%;
+    }
+
+
+    .photo-card:has(#GDLF-Stickers-4:checked) .carosel-body {
+        left: -400%;
+    }
+
+
+    .photo-card:has(#GDLF-Stickers-5:checked) .carosel-body {
+        left: -500%;
+    }
+
+
+    .photo-card:has(#GDLF-Stickers-6:checked) .carosel-body {
+        left: -600%;
+    }
+
+    .photo-card:has(#Roughs-0:checked) .carosel-body {
+        left: -0%;
+    }
+
+
+    .photo-card:has(#Roughs-1:checked) .carosel-body {
+        left: -100%;
+    }
+
+
+    .photo-card:has(#Roughs-2:checked) .carosel-body {
+        left: -200%;
+    }
 </style>
-
-<!-- {@html `<style>${css}</style>`} -->
-
-
-<!-- {css && <style is:raw>{cssL}</style>} -->
