@@ -1,6 +1,13 @@
 ---
 import * as utils from "../scripts/utils";
+import type { ImageMetadata } from 'astro';
+import { Image, Picture } from 'astro:assets';
 const { paths, title, date } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/artwork/**/*.{jpeg,jpg,png,gif,webp,svg}');
+
+function fixImagePath(path: string) {
+    return '/'+path.replaceAll('\\', '/');
+}
 
 let css = '';
 // css += `.photo-card:hover .carosel-body {left: -100%}`;
@@ -19,7 +26,7 @@ if (paths.length > 1)
         `;
     })
 }
-console.log(css);
+// console.log(css);
 ///* transform: translateX(-${index * 100}%); */
 ---
 
@@ -32,11 +39,13 @@ console.log(css);
 </div> -->
 
 <div class="photo-card">
-    <img class="first-image" src={paths[0]} alt={title}/>
-
+    <!-- <img class="first-image" src={paths[0]} alt={title}/> -->
+    <Image class="first-image" src={images[fixImagePath(paths[0])]()} alt={title} height='500'/>
+    
     <div class="carosel-body">
         {paths.map((p: string) =>
-            <img src={p} alt={title} />
+            // <img src={p} alt={title} />
+            <Image src={images[fixImagePath(p)]()} alt={title} height='500'/>
         )}
     </div>
     
