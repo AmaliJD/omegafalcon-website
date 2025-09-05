@@ -19,11 +19,7 @@ if (paths.length > 1)
         const id = (title + '-' + index).replaceAll(' ', '-');
         // console.log(id);
         css += `
-        .photo-card:has(#${id}:checked) .carosel-body {
-            left: -${index * 100}%;
-        }
-            
-        `;
+        .photo-card:has(#${id}:checked) .carosel-body { left: -${index * 100}%; }`;
     })
 }
 console.log(css);
@@ -134,6 +130,7 @@ console.log(css);
         left: -100%
     } */
 
+    /* OVERLAY */
     .overlay {
         position: absolute;
         
@@ -149,13 +146,14 @@ console.log(css);
         align-items: center;
 
         opacity: 0;
+        /* background-color: transparent; */
         transition: opacity 0.3s ease;
         text-align: center;
     }
 
-    /* OVERLAY */
     .photo-card:hover .overlay{
         opacity: 1;
+        /* background-color: #0000000b; */
     }
 
     .overlay .title {
@@ -216,79 +214,40 @@ console.log(css);
     }
 
     /* GENERATED */
-    .photo-card:has(#I-Depend-On-You-0:checked) .carosel-body {
-        left: -0%;
-    }
+    .photo-card:has(#I-Depend-On-You-0:checked) .carosel-body { left: -0%; }
+    .photo-card:has(#I-Depend-On-You-1:checked) .carosel-body { left: -100%; }
 
 
-    .photo-card:has(#I-Depend-On-You-1:checked) .carosel-body {
-        left: -100%;
-    }
+    .photo-card:has(#Sliced-Open-0:checked) .carosel-body { left: -0%; }
+    .photo-card:has(#Sliced-Open-1:checked) .carosel-body { left: -100%; }
+    .photo-card:has(#Shading-Tests-0:checked) .carosel-body { left: -0%; }
+    .photo-card:has(#Shading-Tests-1:checked) .carosel-body { left: -100%; }
 
+    .photo-card:has(#GDLF-Stickers-0:checked) .carosel-body { left: -0%; }
+    .photo-card:has(#GDLF-Stickers-1:checked) .carosel-body { left: -100%; }
+    .photo-card:has(#GDLF-Stickers-2:checked) .carosel-body { left: -200%; }
+    .photo-card:has(#GDLF-Stickers-3:checked) .carosel-body { left: -300%; }
+    .photo-card:has(#GDLF-Stickers-4:checked) .carosel-body { left: -400%; }
+    .photo-card:has(#GDLF-Stickers-5:checked) .carosel-body { left: -500%; }
+    .photo-card:has(#GDLF-Stickers-6:checked) .carosel-body { left: -600%; }
 
-    .photo-card:has(#Sliced-Open-0:checked) .carosel-body {
-        left: -0%;
-    }
+    .photo-card:has(#Roughs-0:checked) .carosel-body { left: -0%; }
+    .photo-card:has(#Roughs-1:checked) .carosel-body { left: -100%; }
+    .photo-card:has(#Roughs-2:checked) .carosel-body { left: -200%; }
 
+    .photo-card:has(#Toastt-pfp-0:checked) .carosel-body { left: -0%; }
+    .photo-card:has(#Toastt-pfp-1:checked) .carosel-body { left: -100%; }
+    .photo-card:has(#Toastt-pfp-2:checked) .carosel-body { left: -200%; }
+    .photo-card:has(#Toastt-pfp-3:checked) .carosel-body { left: -300%; }
+    .photo-card:has(#Toastt-pfp-4:checked) .carosel-body { left: -400%; }
 
-    .photo-card:has(#Sliced-Open-1:checked) .carosel-body {
-        left: -100%;
-    }
+    .photo-card:has(#Vibes-Color-Model-0:checked) .carosel-body { left: -0%; }
+    .photo-card:has(#Vibes-Color-Model-1:checked) .carosel-body { left: -100%; }
+    .photo-card:has(#Vibes-Color-Model-2:checked) .carosel-body { left: -200%; }
 
-    .photo-card:has(#Shading-Tests-0:checked) .carosel-body {
-        left: -0%;
-    }
-
-
-    .photo-card:has(#Shading-Tests-1:checked) .carosel-body {
-        left: -100%;
-    }
-
-    .photo-card:has(#GDLF-Stickers-0:checked) .carosel-body {
-        left: -0%;
-    }
-
-
-    .photo-card:has(#GDLF-Stickers-1:checked) .carosel-body {
-        left: -100%;
-    }
-
-
-    .photo-card:has(#GDLF-Stickers-2:checked) .carosel-body {
-        left: -200%;
-    }
-
-
-    .photo-card:has(#GDLF-Stickers-3:checked) .carosel-body {
-        left: -300%;
-    }
-
-
-    .photo-card:has(#GDLF-Stickers-4:checked) .carosel-body {
-        left: -400%;
-    }
-
-
-    .photo-card:has(#GDLF-Stickers-5:checked) .carosel-body {
-        left: -500%;
-    }
-
-
-    .photo-card:has(#GDLF-Stickers-6:checked) .carosel-body {
-        left: -600%;
-    }
-
-    .photo-card:has(#Roughs-0:checked) .carosel-body {
-        left: -0%;
-    }
-
-
-    .photo-card:has(#Roughs-1:checked) .carosel-body {
-        left: -100%;
-    }
-
-
-    .photo-card:has(#Roughs-2:checked) .carosel-body {
-        left: -200%;
-    }
+    .photo-card:has(#Scalar-Snake-Power-ups-0:checked) .carosel-body { left: -0%; }
+    .photo-card:has(#Scalar-Snake-Power-ups-1:checked) .carosel-body { left: -100%; }
+    .photo-card:has(#Scalar-Snake-Power-ups-2:checked) .carosel-body { left: -200%; }
+    .photo-card:has(#Scalar-Snake-Power-ups-3:checked) .carosel-body { left: -300%; }
+    .photo-card:has(#Scalar-Snake-Power-ups-4:checked) .carosel-body { left: -400%; }
 </style>
